@@ -9,6 +9,7 @@ Group:		Applications/System
 # git://github.com/penberg/linux-kvm.git
 Source0:	%{name}-%{version}-%{snap}.tar.bz2
 # Source0-md5:	b0b94a75d915f70ae14a089ddc7d7abb
+BuildRequires:	binutils-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
