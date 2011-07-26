@@ -1,0 +1,42 @@
+# TODO: use linux tarball when kernel 3.1 is released
+%define	snap	20110726
+Summary:	Native Linux KVM tool
+Name:		linux-kvm
+Version:	3.1
+Release:	0.%{snap}.1
+License:	GPL v2
+Group:		Applications/System
+# git://github.com/penberg/linux-kvm.git
+Source0:	%{name}-%{version}-%{snap}.tar.bz2
+# Source0-md5:	b0b94a75d915f70ae14a089ddc7d7abb
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%description
+The goal of this tool is to provide a clean, from-scratch, lightweight
+KVM host tool implementation that can boot Linux guest images (just a
+hobby, won't be big and professional like QEMU) with no BIOS
+dependencies and with only the minimal amount of legacy device
+emulation.
+
+%prep
+%setup -q -n %{name}
+
+%build
+%{__make} -C tools/kvm \
+	CC="%{__cc} %{rpmcppflags} %{rpmcflags} %{rpmldflags}" \
+	V=1
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+install -d $RPM_BUILD_ROOT%{_sbindir}
+
+install tools/kvm/kvm $RPM_BUILD_ROOT%{_sbindir}
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(644,root,root,755)
+%doc tools/kvm/Documentation/* tools/kvm/README
+%attr(755,root,root) %{_sbindir}/kvm
