@@ -1,9 +1,10 @@
 # TODO: use linux tarball when kernel 3.1 is released
+%define	rel	2
 %define	snap	20110726
 Summary:	Native Linux KVM tool
 Name:		linux-kvm
 Version:	3.1
-Release:	0.%{snap}.1
+Release:	0.%{snap}.%{rel}
 License:	GPL v2
 Group:		Applications/System
 # git://github.com/penberg/linux-kvm.git
