@@ -1,5 +1,5 @@
 # TODO: use linux tarball when kernel 3.1 is released
-%define	rel	3
+%define	rel	4
 %define	snap	20110726
 Summary:	Native Linux KVM tool
 Name:		linux-kvm
