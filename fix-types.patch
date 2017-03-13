@@ -1,0 +1,49 @@
+diff -ur linux-kvm/tools/kvm/builtin-run.c linux-kvm-bioscall/tools/kvm/builtin-run.c
+--- linux-kvm/tools/kvm/builtin-run.c	2011-07-26 08:46:14.000000000 +0200
++++ linux-kvm-bioscall/tools/kvm/builtin-run.c	2017-03-13 19:08:42.249902232 +0100
+@@ -4,6 +4,7 @@
+ #include <unistd.h>
+ #include <stdlib.h>
+ #include <termios.h>
++#include <sys/sysmacros.h>
+ #include <sys/utsname.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
+diff -ur linux-kvm/tools/kvm/include/kvm/e820.h linux-kvm-bioscall/tools/kvm/include/kvm/e820.h
+--- linux-kvm/tools/kvm/include/kvm/e820.h	2011-07-26 08:46:14.000000000 +0200
++++ linux-kvm-bioscall/tools/kvm/include/kvm/e820.h	2017-03-13 19:13:40.660703177 +0100
+@@ -2,6 +2,7 @@
+ #define KVM_E820_H
+ 
+ #include <linux/types.h>
++#include "kvm/bios.h"
+ 
+ #define SMAP    0x534d4150      /* ASCII "SMAP" */
+ 
+@@ -13,6 +14,6 @@
+ 	u32	edx;
+ };
+ 
+-void e820_query_map(struct e820_query *query);
++bioscall void e820_query_map(struct e820_query *query);
+ 
+ #endif /* KVM_E820_H */
+diff -ur linux-kvm/tools/kvm/include/kvm/vesa.h linux-kvm-bioscall/tools/kvm/include/kvm/vesa.h
+--- linux-kvm/tools/kvm/include/kvm/vesa.h	2011-07-26 08:46:14.000000000 +0200
++++ linux-kvm-bioscall/tools/kvm/include/kvm/vesa.h	2017-03-13 19:14:29.819084291 +0100
+@@ -2,6 +2,7 @@
+ #define KVM__VESA_H
+ 
+ #include <linux/types.h>
++#include "kvm/bios.h"
+ 
+ #define VESA_WIDTH	640
+ #define VESA_HEIGHT	480
+@@ -14,6 +15,6 @@
+ struct int10_args;
+ 
+ struct framebuffer *vesa__init(struct kvm *self);
+-void int10_handler(struct int10_args *args);
++bioscall void int10_handler(struct int10_args *args);
+ 
+ #endif

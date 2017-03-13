@@ -1,5 +1,5 @@
 # TODO: use linux tarball when kernel 3.1 is released
-%define	rel	8
+%define	rel	9
 %define	snap	20110726
 Summary:	Native Linux KVM tool
 Name:		linux-kvm
@@ -10,6 +10,7 @@ Group:		Applications/System
 # git://github.com/penberg/linux-kvm.git
 Source0:	%{name}-%{version}-%{snap}.tar.bz2
 # Source0-md5:	b0b94a75d915f70ae14a089ddc7d7abb
+Patch0:		fix-types.patch
 BuildRequires:	binutils-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -22,10 +23,12 @@ emulation.
 
 %prep
 %setup -q -n %{name}
+%patch0 -p1
 
 %build
 %{__make} -C tools/kvm \
 	CC="%{__cc} %{rpmcppflags} %{rpmcflags} %{rpmldflags}" \
+	WERROR=0 \
 	V=1
 
 %install
