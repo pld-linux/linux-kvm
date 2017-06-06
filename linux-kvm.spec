@@ -1,7 +1,8 @@
 # TODO: use linux tarball when kernel 3.1 is released
-%define	rel	9
+%define	rel	10
 %define	snap	20110726
 Summary:	Native Linux KVM tool
+Summary(pl.UTF-8):	Natywne narzędzie KVM dla Linuksa
 Name:		linux-kvm
 Version:	3.1
 Release:	0.%{snap}.%{rel}
@@ -21,6 +22,12 @@ hobby, won't be big and professional like QEMU) with no BIOS
 dependencies and with only the minimal amount of legacy device
 emulation.
 
+%description -l pl.UTF-8
+Celem tego narzędzia jest dostarczenie czystej, lekkiej, napisanej od
+zera implementacji hosta KVM, potrafiącego uruchamiać obrazy gościa
+Linuksa (tylko hobby, nie będzie duża i profesjonalna jak QEMU) bez
+zależności oD BIOS-u i z minimalną emulacją tradycyjnych urządzeń.
+
 %prep
 %setup -q -n %{name}
 %patch0 -p1
@@ -33,7 +40,6 @@ emulation.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT%{_sbindir}
 
 install tools/kvm/kvm $RPM_BUILD_ROOT%{_sbindir}
