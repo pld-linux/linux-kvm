@@ -13,6 +13,7 @@ Source0:	%{name}-%{version}-%{snap}.tar.bz2
 # Source0-md5:	b0b94a75d915f70ae14a089ddc7d7abb
 Patch0:		fix-types.patch
 BuildRequires:	binutils-devel
+BuildRequires:	glibc-devel(ix86)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
