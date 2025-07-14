@@ -31,7 +31,7 @@ zależności oD BIOS-u i z minimalną emulacją tradycyjnych urządzeń.
 
 %prep
 %setup -q -n %{name}
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__make} -C tools/kvm \
